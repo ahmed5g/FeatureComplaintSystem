@@ -30,7 +30,7 @@ public class Complaint implements Serializable {
     private String customerAdress;
     private String orderID;
     private String description;
-    @Enumerated(EnumType.STRING)
+    @Enumerated
     private ComplaintsStatus complaintStatus;
     private String ShippingState;
 
