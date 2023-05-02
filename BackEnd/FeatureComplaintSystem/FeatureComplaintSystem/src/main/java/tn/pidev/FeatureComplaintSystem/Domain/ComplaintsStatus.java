@@ -4,5 +4,6 @@ public enum ComplaintsStatus {
     APPROVED,
     IN_PROGRESS,
     REJECTED,
+    PENDING
 }
 

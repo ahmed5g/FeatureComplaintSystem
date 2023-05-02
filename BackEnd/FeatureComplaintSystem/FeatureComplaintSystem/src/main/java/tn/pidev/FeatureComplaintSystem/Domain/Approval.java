@@ -6,7 +6,9 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -21,14 +23,18 @@ public class Approval implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate date;
+    private LocalDateTime approvedDate;
     private String approvedBy;
-    private ComplaintsStatus ActionOnComplaint;
 
     @OneToMany(fetch=FetchType.EAGER , mappedBy =  "approval")
-    @JsonIgnore
-    private List<Complaint> complaints;
+    private Set<Complaint> complaints;
 
+
+
+    @PrePersist
+    public void prePersist(){
+        this.approvedDate = LocalDateTime.now();
+    }
 
 
 }
