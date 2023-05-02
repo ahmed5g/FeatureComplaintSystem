@@ -1,8 +1,9 @@
 package tn.pidev.FeatureComplaintSystem.Service.Interfaces;
 
+import jakarta.transaction.Transactional;
 import tn.pidev.FeatureComplaintSystem.Domain.Approval;
-import tn.pidev.FeatureComplaintSystem.Domain.Complaint;
 import tn.pidev.FeatureComplaintSystem.Domain.ComplaintsStatus;
+import tn.pidev.FeatureComplaintSystem.Domain.Shipping;
 
 import java.util.List;
 
@@ -21,4 +22,7 @@ public interface IComplaintApprovalService {
 
 
     void updateComplaintStatusByApproval(Long complaintId, ComplaintsStatus status);
+
+    @Transactional
+    void updateComplaintsShippmentForApprovedComplaints(Long complaintId, Shipping shippment);
 }

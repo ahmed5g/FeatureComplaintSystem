@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.pidev.FeatureComplaintSystem.Domain.Approval;
 import tn.pidev.FeatureComplaintSystem.Domain.Complaint;
 import tn.pidev.FeatureComplaintSystem.Domain.ComplaintsStatus;
+import tn.pidev.FeatureComplaintSystem.Domain.Shipping;
 import tn.pidev.FeatureComplaintSystem.Repo.ComplaintRepo;
 import tn.pidev.FeatureComplaintSystem.Service.Interfaces.IComplaintApprovalService;
 import tn.pidev.FeatureComplaintSystem.Service.Interfaces.IComplaintService;
@@ -68,6 +69,10 @@ public class ApprovalController {
         ComplaintApprovalService.updateComplaintStatusByApproval(complaintId, status);
     }
 
+    @PutMapping("/complaint/{complaintId}/shippment")
+    public void setComplaintShippingByApproval(@PathVariable Long complaintId , @RequestBody Shipping shippment) {
+        ComplaintApprovalService.updateComplaintsShippmentForApprovedComplaints(complaintId, shippment);
+    }
 
 
 }

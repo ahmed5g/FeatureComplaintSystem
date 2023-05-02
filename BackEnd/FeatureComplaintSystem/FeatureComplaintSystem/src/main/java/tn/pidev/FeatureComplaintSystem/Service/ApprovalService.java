@@ -2,11 +2,11 @@ package tn.pidev.FeatureComplaintSystem.Service;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.social.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import tn.pidev.FeatureComplaintSystem.Domain.Approval;
 import tn.pidev.FeatureComplaintSystem.Domain.Complaint;
 import tn.pidev.FeatureComplaintSystem.Domain.ComplaintsStatus;
+import tn.pidev.FeatureComplaintSystem.Domain.Shipping;
 import tn.pidev.FeatureComplaintSystem.Repo.ApprovalRepo;
 import tn.pidev.FeatureComplaintSystem.Repo.ComplaintRepo;
 import tn.pidev.FeatureComplaintSystem.Service.Interfaces.IComplaintApprovalService;
@@ -63,6 +63,20 @@ public class ApprovalService implements IComplaintApprovalService {
         complaint.setComplaintStatus(status);
         ComplaintRepo.save(complaint);
     }
+
+    @Transactional
+    @Override
+    public void updateComplaintsShippmentForApprovedComplaints(Long complaintId, Shipping shippment) {
+        List<Complaint> approvedComplaints = ComplaintRepo.findByIdAndComplaintStatus(complaintId,ComplaintsStatus.APPROVED );
+        for (Complaint complaint : approvedComplaints) {
+            List<Shipping> shippings = complaint.getShippings();
+            shippings.add(shippment);
+            complaint.setShippings(shippings);
+            ComplaintRepo.save(complaint);
+        }
+    }
+
+
 
 
 }
