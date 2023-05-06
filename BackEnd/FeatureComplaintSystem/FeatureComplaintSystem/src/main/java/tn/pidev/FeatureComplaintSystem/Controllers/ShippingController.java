@@ -10,7 +10,7 @@ import tn.pidev.FeatureComplaintSystem.Service.Interfaces.IShippingService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Shipping")
+@RequestMapping("/shipping")
 public class ShippingController {
 
 
