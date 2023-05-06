@@ -30,7 +30,7 @@ public class ApprovalController {
 
 
     @PostMapping("/add")
-    public Approval addComplaint(@RequestBody Approval c) {
+        public Approval addApproval(@RequestBody Approval c) {
         Approval Approval = ComplaintApprovalService.addApproval(c);
         return Approval;
     }
@@ -40,6 +40,10 @@ public class ApprovalController {
         return Approval;
     }
 
+    @DeleteMapping("/{id}/delete")
+    public void removeApproval(@PathVariable("id") Long ApprovalID) {
+        ComplaintApprovalService.deleteApproval(ApprovalID);
+    }
     @GetMapping("/")
     public List<Approval> getApprovals() {
         List<Approval> listApprovals = ComplaintApprovalService.retriveALLApprovals();
@@ -52,10 +56,6 @@ public class ApprovalController {
         return Approval;
     }
 
-    @DeleteMapping("/{id}/delete")
-    public void removeApproval(@PathVariable("id") Long ApprovalID) {
-        ComplaintApprovalService.deleteApproval(ApprovalID);
-    }
 
 
     @GetMapping("/Moderators/{name}")
