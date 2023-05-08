@@ -7,6 +7,7 @@ import lombok.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -26,8 +27,9 @@ public class Approval implements Serializable {
     private LocalDateTime approvedDate;
     private String approvedBy;
 
-    @OneToMany(fetch=FetchType.EAGER , mappedBy =  "approval")
-    private Set<Complaint> complaints;
+
+    @ManyToMany(mappedBy = "approvals")
+    private Set<Complaint> Complaints = new HashSet<>();
 
 
 

@@ -8,7 +8,9 @@ import lombok.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -31,35 +33,26 @@ public class Complaint implements Serializable {
     private String orderID;
     private String description;
     @Enumerated
+
     private ComplaintsStatus complaintStatus;
     private String ShippingState;
 
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy =  "complaint")
+    @OneToMany(mappedBy =  "complaint")
+    private Set<Shipping> Shippings = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "complaint_Approval",
+            joinColumns = @JoinColumn(name = "complaint_id"),
+            inverseJoinColumns = @JoinColumn(name = "approval_id")
+    )
+    private Set<Approval> approvals = new HashSet<>();
 
-    private List<Shipping> shippings;
-    @ManyToOne
-    @JsonIgnore
-    private Approval approval;
 
     @PrePersist
     public void prePersist(){
         this.createdAt = LocalDateTime.now();
     }
 
-    public void starterStatue(){
-        this.complaintStatus = ComplaintsStatus.IN_PROGRESS;
-    }
 
-    public void approve() {
-        this.complaintStatus = ComplaintsStatus.APPROVED;
-    }
-
-    public void reject() {
-        this.complaintStatus = ComplaintsStatus.REJECTED;
-    }
-
-    public Complaint(String customerEmail) {
-        this.complaintStatus = ComplaintsStatus.PENDING;
-    }
 }

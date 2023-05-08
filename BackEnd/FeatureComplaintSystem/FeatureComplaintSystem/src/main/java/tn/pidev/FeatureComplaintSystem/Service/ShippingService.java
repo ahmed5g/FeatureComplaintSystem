@@ -1,27 +1,24 @@
 package tn.pidev.FeatureComplaintSystem.Service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.pidev.FeatureComplaintSystem.Domain.Complaint;
 import tn.pidev.FeatureComplaintSystem.Domain.Shipping;
+import tn.pidev.FeatureComplaintSystem.Repo.ComplaintRepo;
 import tn.pidev.FeatureComplaintSystem.Repo.ShippingRepo;
 import tn.pidev.FeatureComplaintSystem.Service.Interfaces.IShippingService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShippingService implements IShippingService {
 
     @Autowired
     ShippingRepo ShippingRepo;
-    @Override
-    public Shipping addShipping(Shipping c) {
-        return ShippingRepo.save(c);
-    }
-
-    @Override
-    public Shipping updateShipping(Shipping c) {
-        return ShippingRepo.save(c);
-    }
+    @Autowired
+    ComplaintRepo ComplaintRepo;
 
     @Override
     public List<Shipping> retriveAllShippings() {
@@ -30,12 +27,27 @@ public class ShippingService implements IShippingService {
 
     @Override
     public Shipping retriveShipping(Long shippingID) {
-        return ShippingRepo.findById(shippingID).get();
+        Optional<Shipping> shipping = ShippingRepo.findById(shippingID);
+        if (shipping.isPresent()) {
+            return shipping.get();
+        } else {
+            // handle error if shipping object with given ID is not found
+            throw new RuntimeException("Shipping not found with ID: " + shippingID);
+        }
     }
 
     @Override
     public void deleteShipping(Long shippingID) {
         ShippingRepo.deleteById(shippingID);
 
+    }
+
+    @Override
+    public Shipping addShippingToComplaint(Long complaintId, Shipping shipping) {
+        Complaint complaint = ComplaintRepo.findById(complaintId)
+                .orElseThrow(() -> new EntityNotFoundException("Complaint not found with id: " + complaintId));
+
+        shipping.setComplaint(complaint);
+        return ShippingRepo.save(shipping);
     }
 }

@@ -12,6 +12,7 @@ import tn.pidev.FeatureComplaintSystem.Repo.ComplaintRepo;
 import tn.pidev.FeatureComplaintSystem.Service.Interfaces.IComplaintApprovalService;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ApprovalService implements IComplaintApprovalService {
@@ -69,7 +70,7 @@ public class ApprovalService implements IComplaintApprovalService {
     public void updateComplaintsShippmentForApprovedComplaints(Long complaintId, Shipping shippment) {
         List<Complaint> approvedComplaints = ComplaintRepo.findByIdAndComplaintStatus(complaintId,ComplaintsStatus.APPROVED );
         for (Complaint complaint : approvedComplaints) {
-            List<Shipping> shippings = complaint.getShippings();
+            Set<Shipping> shippings = complaint.getShippings();
             shippings.add(shippment);
             complaint.setShippings(shippings);
             ComplaintRepo.save(complaint);

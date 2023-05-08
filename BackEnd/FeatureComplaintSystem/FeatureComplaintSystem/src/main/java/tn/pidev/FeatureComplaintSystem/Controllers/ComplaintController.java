@@ -1,9 +1,13 @@
 package tn.pidev.FeatureComplaintSystem.Controllers;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.pidev.FeatureComplaintSystem.Domain.Complaint;
 import tn.pidev.FeatureComplaintSystem.Domain.ComplaintsStatus;
+import tn.pidev.FeatureComplaintSystem.Domain.Shipping;
 import tn.pidev.FeatureComplaintSystem.Service.Interfaces.IComplaintService;
 
 import java.util.List;
@@ -23,9 +27,12 @@ public class ComplaintController {
         Complaint complaint = ComplaintService.addCompaint(c);
         return complaint;
     }
-    @PutMapping("/update")
-    public Complaint updateComplaint(@RequestBody Complaint c) {
-        Complaint complaint = ComplaintService.updateComplaint(c);
+
+    //update only allowded for description
+    //customer : Name, Email, Address
+    @PutMapping("/update/{complaintId}")
+    public Complaint updateComplaint(@PathVariable Long complaintId,@RequestBody Complaint c) {
+        Complaint complaint = ComplaintService.updateComplaint(complaintId,c);
         return complaint;
     }
 
@@ -45,6 +52,24 @@ public class ComplaintController {
     public void removeComplaint(@PathVariable("id") Long CompaintID) {
         ComplaintService.deleteComplaint(CompaintID);
     }
+
+    // Moderator updates the status of a complaint
+    @PutMapping("/{complaintId}/approvalset")
+    public ResponseEntity<Complaint> updateComplaintStatus(@PathVariable Long complaintId, @RequestParam String status) {
+        Complaint updatedComplaint = ComplaintService.updateComplaintStatus(complaintId, status);
+        return new ResponseEntity<>(updatedComplaint, HttpStatus.OK);
+    }
+
+
+
+    // Moderator updates shipping information for an approved complaint
+    //Set the Shippment for approved Complaints
+    @PutMapping("/{complaintId}/shipping")
+    public void setShippingForComplaint(@PathVariable Long complaintId , @RequestBody Shipping shippment) {
+        ComplaintService.updateShippingInfoForComplaint(complaintId, shippment);
+    }
+
+
 
 
 

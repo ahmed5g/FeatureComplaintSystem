@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -20,7 +21,7 @@ public class Shipping implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Shipping_ID;
-    private LocalDate Shipping_date;
+    private LocalDateTime Shipping_date;
     //address of the store from which the package is sent
     private String sender_address;
     //address of the customer who ordered the package
@@ -29,8 +30,15 @@ public class Shipping implements Serializable {
     private Float shipping_cost;
     private String replacement_item;
     private ShippmentStatus delivery_status;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Complaint complaint;
+
+
+    @PrePersist
+    public void prePersistence(){
+        this.delivery_status = ShippmentStatus.in_transit;
+        this.Shipping_date = LocalDateTime.now();
+    }
 
 
 
