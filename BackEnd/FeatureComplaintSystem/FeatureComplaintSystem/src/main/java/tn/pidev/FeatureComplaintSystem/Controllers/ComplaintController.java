@@ -70,6 +70,14 @@ public class ComplaintController {
     }
 
 
+    @PutMapping("/{id}/update-shipping-location")
+    public void updateShippingLocationGoogleMaps(@PathVariable Long id, @RequestBody String location,
+                                       @RequestParam("latitude") Double latitude, @RequestParam("longitude") Double longitude) {
+        ComplaintService.updateShippingLocationGoogleMaps(id, location, latitude, longitude);
+    }
+
+
+
 
 
 

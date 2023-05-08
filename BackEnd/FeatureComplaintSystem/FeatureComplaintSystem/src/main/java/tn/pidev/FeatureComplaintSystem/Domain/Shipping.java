@@ -29,6 +29,8 @@ public class Shipping implements Serializable {
     private String Tracking_number;
     private Float shipping_cost;
     private String replacement_item;
+    private Double Recipient_latitude;
+    private Double Recipient_longitude;
     private ShippmentStatus delivery_status;
     @ManyToOne
     private Complaint complaint;

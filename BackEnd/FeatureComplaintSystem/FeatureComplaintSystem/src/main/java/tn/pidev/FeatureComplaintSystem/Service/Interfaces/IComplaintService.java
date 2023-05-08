@@ -21,4 +21,5 @@ public interface IComplaintService {
 
     void updateShippingInfoForComplaint(Long complaintId, Shipping shippingInfo);
 
+    void updateShippingLocationGoogleMaps(Long id, String location, Double latitude, Double longitude);
 }
