@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
+import org.w3c.dom.Text;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,6 +33,7 @@ public class Complaint implements Serializable {
     private String customerEmail;
     private String customerAdress;
     private String orderID;
+    @Column(columnDefinition = "TEXT")
     private String description;
     @Enumerated
 
