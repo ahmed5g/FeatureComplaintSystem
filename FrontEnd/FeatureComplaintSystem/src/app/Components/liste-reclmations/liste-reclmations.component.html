@@ -91,7 +91,7 @@
                                                         </a>
                                                         
                                                     </td>
-                                                    <td class="text-right"><a routerLink="/update/{{item.id}}" >
+                                                    <td class="text-right"><a [routerLink]="['/update', item.id]" >
                                                         <i
                                                         class="las la-pen text-info font-18"></i>
                                                     </a> <a href="#" (click)="suprimeData(item.id)">

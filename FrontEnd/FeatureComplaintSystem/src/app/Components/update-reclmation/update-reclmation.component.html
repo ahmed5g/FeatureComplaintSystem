@@ -1,1 +1,125 @@
-<p>update-reclmation works!</p>
+<div class="page-content">
+    <div class="container-fluid"><!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="page-title">Formulaire reclamations</h4>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Admin</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
+                                <li class="breadcrumb-item active">creation </li>
+                            </ol>
+                        </div><!--end col-->
+                        <div class="col-auto align-self-center"><a href="#" class="btn btn-sm btn-outline-primary"
+                                id="Dash_Date"><span class="day-name" id="Day_Name">Today:</span>&nbsp; <span class=""
+                                    id="Select_date">2023</span> <i data-feather="calendar"
+                                    class="align-self-center icon-xs ml-1"></i>
+                            </a><a href="#" class="btn btn-sm btn-outline-primary"><i data-feather="download"
+                                    class="align-self-center icon-xs"></i></a></div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end page-title-box-->
+            </div><!--end col-->
+        </div><!--end row--><!-- end page title end breadcrumb -->
+        <div class="row">
+            <div class="col-lg-12">
+
+            </div><!--end col-->
+        </div><!--end row-->
+        <div class="row">
+            <div class="col-lg-6">
+
+            </div><!--end col-->
+            <div class="col-lg-6">
+
+            </div><!--end col-->
+        </div><!--end row-->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Reclamation</h4>
+                        <p class="text-muted mb-0">Merci de bien remplir le formulaire</p>
+                    </div><!--end card-header-->
+                    <div class="card-body">
+                        <form [formGroup]="EditReclamationForm" id="myform">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group"><label for="customerName">Nom du Client </label> <input
+                                            type="text" class="form-control" id="customerName"
+                                            formControlName="customerName" required></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group"><label for="customerAdress">Address du Client</label> <input
+                                            type="text" class="form-control" id="customerAdress"
+                                            formControlName="customerAdress" required></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group"><label for="orderID">Id Order</label> <input type="text"
+                                            class="form-control" id="orderID" formControlName="orderID" required></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group"><label for="customerEmail">Email du Client</label>
+                                        <input type="email" class="form-control" id="customerEmail"
+                                            formControlName="customerEmail" required placeholder="name@example.com">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group"><label for="description">Description</label>
+
+                                        <textarea class="form-control" rows="5" id="description"
+                                            formControlName="description" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 text-right"><button type="submit"
+                                        class="btn btn-primary px-4">update</button></div>
+                            </div>
+
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <script>
+                                $(".alert").alert('close')
+                            </script>
+                        </form>
+                    </div><!--end card-body-->
+
+
+                </div><!-- end row -->
+                <div class="row">
+                    <div class="col-xl-6">
+
+                    </div><!-- end col -->
+                    <div class="col-xl-6">
+
+                    </div><!-- end col -->
+                </div><!-- end row -->
+                <div class="row">
+                    <div class="col-lg-6">
+
+                    </div><!--end col-->
+                    <div class="col-lg-6">
+
+                    </div><!--end col-->
+                </div><!--end row-->
+                <div class="row">
+                    <div class="col-lg-6">
+
+                    </div><!--end col-->
+                    <div class="col-lg-6">
+
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!-- container -->
+            <footer class="footer text-center text-sm-left">&copy; 2023 <span
+                    class="d-none d-sm-inline-block float-right"></span></footer><!--end footer-->
+        </div><!-- end page content -->

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators , FormControl} from '@angular/forms'
 import { Router } from '@angular/router';
 import { reclamation } from 'src/app/Models/reclamation';
 import { ComplaintService } from 'src/app/Service/reclamations.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-add-reclamation',
@@ -21,7 +22,8 @@ export class AddReclamationComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private reclmationService: ComplaintService,
-    private router: Router
+    private router: Router,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class AddReclamationComponent implements OnInit {
 
     this.reclmationService.saveReclamation(this.addReclamationForm.value).subscribe((result)=> console.warn(result));
     this.router.navigate(['/ListeReclamations']);
+    this.toast.success({detail:"SUCCESS",summary:'Reclamation Bien reçue',duration:5000});
    
   }
 }

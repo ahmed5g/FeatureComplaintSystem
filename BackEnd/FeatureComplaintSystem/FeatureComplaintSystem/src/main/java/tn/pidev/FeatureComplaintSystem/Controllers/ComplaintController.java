@@ -65,7 +65,7 @@ public class ComplaintController {
     // Moderator updates shipping information for an approved complaint
     //Set the Shippment for approved Complaints
     @PutMapping("/{complaintId}/shipping")
-    public void setShippingForComplaint(@PathVariable Long complaintId , @RequestBody Shipping shippment) {
+    public void updateShippingStatusForComplaint(@PathVariable Long complaintId , @RequestBody Shipping shippment) {
         ComplaintService.updateShippingInfoForComplaint(complaintId, shippment);
     }
 

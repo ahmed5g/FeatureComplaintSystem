@@ -11,7 +11,7 @@ const routes: Routes = [
   {path : 'set/:id', component : ShippingPageComponent},
   {path : 'addReclmation', component : AddReclamationComponent},
   {path : 'ListeReclamations', component: ListeReclmationsComponent},
-  {path : 'update/:id', component: UpdateReclmationComponent}
+  { path: 'update/:id', component: UpdateReclmationComponent }
   
 ];
 

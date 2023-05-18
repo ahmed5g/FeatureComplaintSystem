@@ -14,6 +14,7 @@ import { ShipButtonComponent } from './Components/ship-button/ship-button.compon
 import { UpdateReclmationComponent } from './Components/update-reclmation/update-reclmation.component';
 import { SearchReclamationComponent } from './Components/search-reclamation/search-reclamation.component';
 import { SearchPipe } from './search.pipe';
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -26,14 +27,17 @@ import { SearchPipe } from './search.pipe';
     ShipButtonComponent,
     UpdateReclmationComponent,
     SearchReclamationComponent,
-    SearchPipe
+    SearchPipe,
+    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule, 
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

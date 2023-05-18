@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { never } from 'rxjs';
 import { ComplaintService } from 'src/app/Service/reclamations.service';
+import{Location} from '@angular/common'
 
 
 @Component({
@@ -18,7 +19,8 @@ export class ListeReclmationsComponent implements OnInit{
 
   constructor(
     private reclmationService: ComplaintService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ){
     reclmationService.listReclamation().subscribe(data=>{
       console.warn(data)
@@ -38,6 +40,8 @@ export class ListeReclmationsComponent implements OnInit{
     console.warn(this.collection)
     this.collection.splice(item-1,1)
     this.reclmationService.deleteReclamation(item).subscribe((result)=> console.warn(result));
+    this.location.go(this.location.path());
+
    
   }
 }

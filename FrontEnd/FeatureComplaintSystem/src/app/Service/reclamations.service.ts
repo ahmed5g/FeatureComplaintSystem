@@ -9,6 +9,7 @@ import { reclamation } from 'src/app/Models/reclamation';
 })
 export class ComplaintService {
  apiUrl = 'http://localhost:9090/api/complaint'; 
+ apiUrl2= "localhost:9090/api/shipping/complaint";
 
   constructor(public http:HttpClient){}
 
@@ -26,6 +27,13 @@ export class ComplaintService {
     deleteReclamation(id: any): Observable<any> { 
       return this.http.delete(`${this.apiUrl}/ ${id} ` + "/delete");
     }
-    
- 
+
+    getComplaintById(id: any){
+      return this.http.get(`${this.apiUrl}/ ${id}`);
+
+    }
+
+    setShippmentForComplaint(id:any, dataShip: any){
+      return this.http.put(`${this.apiUrl2}/ ${id} `, dataShip)
+    }
   }
